@@ -39,4 +39,4 @@ scrape_configs:
       - targets: ["localhost:9100"]
       # Replace 'localhost' with the appropriate IP if Node Exporter is running on a different machine
 ---------------------------------------------------------------------------------------------------------------------------------------
-6-Enable and start prmotheus , grafana and nide-exporter
+6-Enable and start prmotheus , grafana and node-exporter
