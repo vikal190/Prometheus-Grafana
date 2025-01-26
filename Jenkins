@@ -1,0 +1,59 @@
+pipeline {
+    agent any  // Run the job on any available agent
+
+    environment {
+        // Define environment variables if needed
+     //   PROJECT_NAME = 'MyProject'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from the repository
+                git 'https://github.com/vikal190/Prometheus-Grafana'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                // Run the build command, for example with Maven or Gradle
+                sh './gradlew build' // For Gradle
+                // or
+                // sh 'mvn clean install' // For Maven
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                // Run tests
+                sh './gradlew test' // For Gradle
+                // or
+                // sh 'mvn test' // For Maven
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                // Deploy the project (e.g., to a server or artifact repository)
+                sh 'scp target/*.jar user@yourserver:/path/to/deploy' // Example for deploying a .jar file
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up or post-build actions
+            echo 'Cleaning up'
+        }
+
+        success {
+            // Actions on successful build
+            echo 'Build successful'
+        }
+
+        failure {
+            // Actions on build failure
+            echo 'Build failed'
+        }
+    }
+}
