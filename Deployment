@@ -1,4 +1,4 @@
-#Install prometheus first 
+#Install prometheus first.!!
 1-Command apt get update
 2- apt install prometheus 
 3- apt install node-exporter 
